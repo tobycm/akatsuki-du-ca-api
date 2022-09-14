@@ -75,7 +75,6 @@ def add_to_guild(access_token, user_id, bot_token):
     response = requests.put(url = url, headers = headers, json = data)
     return response.status_code
 # ----------------------------------------------------------
-print("API server started")
 
 @app.route('/join', methods = ['GET'])
 def api_join():
@@ -93,3 +92,7 @@ def api_join():
         print(f"Added {user_name} to the server")
 
     return redirect("https://youtube.com/watch?v=dQw4w9WgXcQ", code = 302)
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host='0.0.0.0', port=5000) # run server on port 5000
